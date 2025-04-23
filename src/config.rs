@@ -6,6 +6,10 @@ pub(crate) struct ServerConfig {
     pub(crate) location: String,
 }
 
+impl ServerConfig {
+    pub(crate) const DEFAULT_PORT: u16 = 5343;
+}
+
 #[derive(Serialize, Deserialize, Debug)]
 pub(crate) struct ClientConfig {
     pub(crate) host: String,
@@ -42,7 +46,7 @@ impl Config {
 
     pub(crate) fn create_server_config() {
         let config = Config::Server(ServerConfig {
-            port: 8080,
+            port: ServerConfig::DEFAULT_PORT,
             location: String::from("/path/to/server"),
         });
         config.to_file("config.json").unwrap();
@@ -51,7 +55,7 @@ impl Config {
     pub(crate) fn create_client_config() {
         let config = Config::Client(ClientConfig {
             host: String::from("localhost"),
-            port: 8080,
+            port: ServerConfig::DEFAULT_PORT,
             location: String::from("/path/to/client"),
         });
         config.to_file("config.json").unwrap();
