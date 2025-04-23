@@ -125,10 +125,5 @@ async fn start_from_config(config: &Config) {
 
             client::run(client_config.host.as_str(), path).await;
         }
-
-        _ => {
-            eprintln!("Unsupported config type");
-            std::process::exit(1);
-        }
     }
 }
